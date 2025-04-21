@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Meals</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container"><h1>Meal Finder</h1>
-    <form>
-        <input type="text" id="search" placeholder="Enter your Meal"></input>
-        <button type="button" id="submit" class="btn"> search</button>
-        <br>
-        <button type="button" id="add" class="btn"> Add Recipe</button>
-        <button type="button" id="mine" class="btn"> My recipe's</button>
-    </form>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Meal Finder</h1>
+      <form id="searchForm">
+        <input type="text" id="search" placeholder="Enter your Meal" />
+        <button type="submit" id="submit" class="btn">search</button>
+        <br />
+        <button type="button" id="add" class="btn">Add Recipe</button>
+        <button type="button" id="mine" class="btn">My recipe's</button>
+      </form>
+      <div id="results"></div>
+    </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
