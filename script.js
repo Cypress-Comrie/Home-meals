@@ -9,46 +9,66 @@ searchForm.addEventListener('submit', (e) => {
 
 async function searchRecipes() {
   const searchValue = searchInput.value.trim()
-  const response = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
-  )
-  const data = await response.json()
-  displayRecipes(data.meals)
+
+  if (!searchValue) {
+    resultsList.innerHTML = '<p>Please enter a search term</p>'
+    return
+  }
+
+  resultsList.innerHTML = '<p>Searching...</p>'
+
+  try {
+    const response = await fetch(
+      `https://api.api-ninjas.com/v1/recipe?query=${encodeURIComponent(
+        searchValue
+      )}`,
+      {
+        headers: {
+          'X-Api-Key': 'juTkmLh97FdPYDThZDnCwQ==hHecN7jtm7D9SwaN',
+        },
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+
+    const data = await response.json()
+    displayRecipes(data)
+  } catch (error) {
+    console.error('Error fetching recipes:', error)
+    resultsList.innerHTML = `<p>Error fetching recipes: ${error.message}</p>`
+  }
 }
 
 function displayRecipes(recipes) {
   let html = ''
 
-  if (!recipes) {
+  if (!recipes || recipes.length === 0) {
     resultsList.innerHTML = '<p>No recipes found. Try another search term.</p>'
     return
   }
 
   recipes.forEach((recipe) => {
-    // Extract ingredients from TheMealDB format
-    let ingredients = []
-    for (let i = 1; i <= 20; i++) {
-      if (
-        recipe[`strIngredient${i}`] &&
-        recipe[`strIngredient${i}`].trim() !== ''
-      ) {
-        const ingredient = `${recipe[`strMeasure${i}`] || ''} ${
-          recipe[`strIngredient${i}`]
-        }`
-        ingredients.push(ingredient.trim())
-      }
-    }
+    const ingredientsArray = recipe.ingredients
+      .split('|')
+      .map((item) => item.trim())
 
     html += `
-      <div>
-        <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
-        <h3>${recipe.strMeal}</h3>
+      <div class="recipe-card">
+        <h3>${recipe.title}</h3>
+        <p><strong>Servings:</strong> ${recipe.servings}</p>
+        <p><strong>Cooking Time:</strong> ${
+          recipe.cook_time_minutes
+        } minutes</p>
+        <h4>Ingredients:</h4>
         <ul>
-          ${ingredients.map((ingredient) => `<li>${ingredient}</li>`).join('')}
+          ${ingredientsArray
+            .map((ingredient) => `<li>${ingredient}</li>`)
+            .join('')}
         </ul>
-        <a href="https://www.themealdb.com/meal/${
-          recipe.idMeal
-        }" target="_blank">View Recipe</a>
+        <h4>Instructions:</h4>
+        <p>${recipe.instructions}</p>
       </div>
     `
   })
