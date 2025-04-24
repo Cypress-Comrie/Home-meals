@@ -1,10 +1,27 @@
 body {
-  background-color: #f5f5f5;
+  background-image: url('/assets/HomeMeals.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  background-position: center;
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   margin: 0;
   padding: 0;
+}
+
+.sidenav {
+  background-color: #333;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 50px;
+  transition: 0.7s;
+  cursor: pointer;
 }
 
 header {
@@ -60,4 +77,7 @@ div.recipe-card {
   flex-direction: column;
   padding: 20px;
   justify-content: center;
+}
+
+@media (max-width: 500px) {
 }

@@ -7,14 +7,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="nav" class="sidenav">
+      <button type="button" id="mine" class="btn">My recipe's</button>
+      <button type="button" id="add" class="btn">Add Recipe</button>
+    </div>
+    <span onclick="openNav()">Works?</span>
     <div class="container">
+      <nav>
+        <!-- img tag here with logo-->
+      </nav>
       <h1>Home Meals</h1>
       <form id="searchForm">
         <input type="text" id="search" placeholder="Enter your Meal" />
         <button type="submit" id="submit" class="btn">search</button>
-        <br />
-        <button type="button" id="add" class="btn">Add Recipe</button>
-        <button type="button" id="mine" class="btn">My recipe's</button>
       </form>
       <div id="results"></div>
     </div>

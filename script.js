@@ -1,6 +1,16 @@
 const searchForm = document.querySelector('form')
 const searchInput = document.querySelector('#search')
 const resultsList = document.querySelector('#results')
+function openNav() {
+  document.getElementById('nav').style.width = '250px'
+  document.getElementsByClassName('container').style.marginLeft = '250px'
+  document.getElementsByTagName('span').style.marginLeft = '0px'
+}
+function closeNav() {
+  document.getElementById('nav').style.width = '0px'
+  document.getElementsByClassName('container').style.marginLeft = '0px'
+  document.getElementsByTagName('span').style.marginLeft = '0px'
+}
 
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault()
