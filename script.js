@@ -4,7 +4,8 @@ const resultsList = document.querySelector('#results')
 function openNav() {
   document.getElementById('nav').style.width = '250px'
   document.getElementsByClassName('container').style.marginLeft = '250px'
-  document.getElementsByTagName('span').style.marginLeft = '0px'
+  document.getElementsByTagName('span').style.marginLeft = '260px'
+  document.getElementsByClassName('button').style.paddingleft = '10px'
 }
 function closeNav() {
   document.getElementById('nav').style.width = '0px'
